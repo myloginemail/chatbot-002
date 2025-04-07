@@ -34,8 +34,11 @@ language_type = {
 
 label_list = list(language_labels.keys())
 
+# 기본값을 '한국어 (Korean)'으로 설정
+default_index = label_list.index('한국어 (Korean)')
+
 # key 인자를 사용해 고유 식별자 부여
-selected_label1 = st.selectbox('원본 언어를 선택해 주세요.', list(language_labels.keys()), key="source_lang")
+selected_label1 = st.selectbox('원본 언어를 선택해 주세요.', list(language_labels.keys()), index=default_index, key="source_lang")
 
 # selected_label1에서 선택된 언어를 제외한 나머지 언어들로 필터링
 filtered_labels = [label for label in label_list if label != selected_label1]
