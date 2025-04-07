@@ -36,6 +36,40 @@ language_type = {
     'SNS 스타일 💬': '짧고 임팩트 있게 표현해줘. 구어체, 해시태그, 이모지도 일부 포함해도 좋아. 트렌디한 느낌이면 더 좋아.'
 }
 
+example_sentences = {
+    '가볍게 🪶': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "오늘 발표 살짝 준비해봤어요~"
+    },
+    '친근하게 😊': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "오늘 발표 준비했는데, 좀 떨리네요 😅"
+    },
+    '격식있게 🧑‍⚖️': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "오늘 발표를 위해 필요한 내용을 충실히 준비했습니다."
+    },
+    '공식적으로 🏢': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "발표를 위한 자료를 완료하였으며, 관련 내용을 검토하였습니다."
+    },
+    '마케팅 스타일 📣': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "오늘, 모든 시선을 사로잡을 발표를 준비했습니다! 기대하셔도 좋아요."
+    },
+    '블로그 스타일 ✍️': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "오늘은 발표가 있는 날이에요. 열심히 준비한 만큼 잘 전달되길 바라요 :)"
+    },
+    '뉴스/보도용 📰': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "해당 발표는 오늘 중으로 완료될 예정이며, 주요 내용은 다음과 같다."
+    },
+    'SNS 스타일 💬': {
+        "before": "오늘 발표 준비했어요.",
+        "after": "드디어 오늘 발표 🎤 준비 완료! #프레젠테이션 #오늘의미션"
+    },
+}
 
 label_list = list(language_labels.keys())
 
@@ -58,6 +92,12 @@ selected_label3 = st.selectbox(
     help="원하는 톤에 따라 문장 스타일이 달라집니다. SNS, 블로그, 마케팅, 공식 등 상황에 맞게 선택해보세요."
 )
 
+# 선택한 스타일의 예시 문장 표시
+selected_example = example_sentences.get(selected_label3)
+if selected_example:
+    with st.expander("💡 선택한 스타일의 예시 보기"):
+        st.markdown(f"**예시 원문:** {selected_example['before']}")
+        st.markdown(f"**윤문 결과:** {selected_example['after']}")
 
 source_lang = language_labels[selected_label1]
 target_lang = language_labels[selected_label2]
