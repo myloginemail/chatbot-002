@@ -13,7 +13,7 @@ message_history_user = []
 message_history_gpt  = []
 
 # 앱 제목
-st.title('Google Translator with GPT-4o')
+st.title('✍️ 맞춤형 번역 스타일링')
 
 # URL 입력 받기
 tran_source_text = st.text_area('번역을 하고 싶은 문장을 입력해 주세요.')
