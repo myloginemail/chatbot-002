@@ -26,11 +26,16 @@ language_labels = {
 }
 
 language_type = {
-    '가볍게': '격식없이 그냥 지나가듯이 가벼운 대화하는 느낌으로 해줘 ',
-    '격식있게': '격식있는 대화나 문장에 쓰일 수 있는 느낌으로 해줘',
-    '친근하게': '친구에게 이야기 하듯이 편안한 느낌으로 해줘',
-    '공식적으로': '공식적인 문서나 이메일에 쓰일 수 있는 느낌으로 해줘',
+    '가볍게 🪶': '일상적인 대화처럼 자연스럽고 부담 없이 표현해줘. 너무 딱딱하지 않게, 말하듯이 써줘.',
+    '친근하게 😊': '친구에게 말하듯 부드럽고 편안한 어조로 윤문해줘. 간단하고 따뜻한 표현을 사용해.',
+    '격식있게 🧑‍⚖️': '존중과 신뢰를 담아 말하는 느낌으로 정중하게 윤문해줘. 문장은 명확하고 단정하게.',
+    '공식적으로 🏢': '비즈니스 문서나 이메일에 쓸 수 있을 정도로 격식을 갖추고 전문적으로 윤문해줘.',
+    '마케팅 스타일 📣': '사용자가 이 문장을 읽고 구매나 행동을 하고 싶게 만드는, 매력적이고 감성적인 마케팅 문장으로 바꿔줘.',
+    '블로그 스타일 ✍️': '스토리를 전달하듯이 감성적이고 부드럽게 윤문해줘. 자연스럽고 읽기 편한 흐름이 중요해.',
+    '뉴스/보도용 📰': '중립적이고 객관적인 톤으로 정보 중심의 문장으로 윤문해줘. 간결하고 정확하게 써줘.',
+    'SNS 스타일 💬': '짧고 임팩트 있게 표현해줘. 구어체, 해시태그, 이모지도 일부 포함해도 좋아. 트렌디한 느낌이면 더 좋아.'
 }
+
 
 label_list = list(language_labels.keys())
 
@@ -45,7 +50,14 @@ filtered_labels = [label for label in label_list if label != selected_label1]
 
 selected_label2 = st.selectbox('번역할 언어를 선택해 주세요.', filtered_labels, key="target_lang")
 
-selected_label3 = st.selectbox('윤문할 타입을 선택해 주세요.', list(language_type.keys()), key="type_lang")
+# 윤문 스타일 선택
+selected_label3 = st.selectbox(
+    '윤문할 스타일을 선택해 주세요.',
+    list(language_type.keys()),
+    key="type_lang",
+    help="원하는 톤에 따라 문장 스타일이 달라집니다. SNS, 블로그, 마케팅, 공식 등 상황에 맞게 선택해보세요."
+)
+
 
 source_lang = language_labels[selected_label1]
 target_lang = language_labels[selected_label2]
@@ -74,9 +86,11 @@ if st.button('번역하기'):
             max_tokens=500
             )
             message_history_gpt.append({"role":"assistant", "content":response.choices[0].message.content})
-            st.success(f"원문장 : {tran_source_text}\n\n"+
-                       f"번역문장 : {translated_text}\n\n"+
-                       f"윤문문장({selected_label3}) : {response.choices[0].message.content}")
+            st.success(
+                f"**원문장:**\n{tran_source_text}\n\n"
+                f"**번역문장 ({selected_label2}):**\n{translated_text}\n\n"
+                f"**윤문문장 ({selected_label3}):**\n{response.choices[0].message.content}"
+            )
         except Exception as e:
             st.error(f'Error: {e}')
         pass
