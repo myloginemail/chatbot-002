@@ -81,4 +81,4 @@ if st.button('번역하기'):
             st.error(f'Error: {e}')
         pass
     else:
-        st.error('Please enter a URL to shorten')
+        st.error('Error')
