@@ -3,7 +3,6 @@ import streamlit as st
 import openai
 import datetime
 from zoneinfo import ZoneInfo
-from langdetect import detect
 from openai import OpenAI
 
 st.set_page_config(
@@ -71,18 +70,10 @@ with col1:
 
     tran_source_text = st.text_area('번역을 하고 싶은 문장을 입력해 주세요.')
 
-    # 언어 코드 감지 → label_list에서 해당 언어의 인덱스를 찾음
-    detected_lang_code = detect_language(tran_source_text)
-    detected_index = 1  # 기본은 '한국어'로 (index=1)
-
-    if detected_lang_code in language_labels.values():
-        detected_label = next(label for label, code in language_labels.items() if code == detected_lang_code)
-        detected_index = label_list.index(detected_label)
-
     selected_label1 = st.selectbox(
         '원본 언어를 선택해 주세요.', 
         list(language_labels.keys()), 
-        index=detected_index, 
+        index=default_index, 
         key="source_lang"
     )
     filtered_labels = [label for label in label_list if label != selected_label1]
