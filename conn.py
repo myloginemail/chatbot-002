@@ -21,3 +21,19 @@ CREATE TABLE IF NOT EXISTS translation_history (
 )
 ''')
 conn.commit()
+
+# DB Insert
+def insertDB(tran_source_text, selected_label1, selected_label2, selected_label3, translated_text, gptMessage) :
+    c.execute('''
+        INSERT INTO translation_history (timestamp, original_kr, source_lang, target_lang, tone, translated_en, polished_en)
+        VALUES (?, ?, ?, ?, ?, ?, ?)''', 
+        (
+        now,
+        tran_source_text,
+        selected_label1,
+        selected_label2,
+        selected_label3,
+        translated_text,
+        gptMessage
+    ))
+conn.commit()
