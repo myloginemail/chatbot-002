@@ -101,7 +101,7 @@ selected_label3 = st.selectbox(
 # 선택한 스타일의 예시 문장 표시
 selected_example = example_sentences.get(selected_label3)
 if selected_example:
-    with st.expander("💡 선택한 스타일의 예시 보기"):
+    with st.expander(f"💡 선택한 스타일({selected_label3})의 예시 보기"):
         st.markdown(f"**예시 원문:** {selected_example['before']}")
         st.markdown(f"**윤문 결과:** {selected_example['after']}")
 
