@@ -13,6 +13,9 @@ client = OpenAI(api_key  = openai_api_key)
 message_history_user = []
 message_history_gpt  = []
 
+if 'history' not in st.session_state:
+    st.session_state.history = []
+
 # 앱 제목
 st.title('✍️ 맞춤형 번역 스타일링')
 
@@ -146,6 +149,30 @@ if st.button('번역하기'):
                 file_name = f"translation_result_{now}.txt",
                 mime="text/plain"
             )
+
+            st.session_state.history.append({
+                "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "original": tran_source_text,
+                "translated": translated_text,
+                "polished": response.choices[0].message.content,
+                "source_lang": selected_label1,
+                "target_lang": selected_label2,
+                "tone": selected_label3
+            })
+
+            st.markdown("## 🕘 히스토리")
+
+            if st.session_state.history:
+                for item in reversed(st.session_state.history):
+                    st.markdown(f"""
+                    **🕒 {item['timestamp']}**
+                    - 원문: {item['original']}
+                    - 번역({item['target_lang']}): {item['translated']}
+                    - 윤문({item['tone']}): {item['polished']}
+                    ---
+                    """)
+            else:
+                st.info("아직 번역된 내용이 없습니다.")
         except Exception as e:
             st.error(f'Error: {e}')
         pass
