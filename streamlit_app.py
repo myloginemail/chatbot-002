@@ -159,9 +159,7 @@ if st.button('번역하기'):
                 "target_lang": selected_label2,
                 "tone": selected_label3
             })
-
-            else:
-                st.info("아직 번역된 내용이 없습니다.")
+            
         except Exception as e:
             st.error(f'Error: {e}')
         pass
@@ -179,3 +177,5 @@ if st.session_state.history:
         - 윤문({item['tone']}): {item['polished']}
         ---
         """)
+else:
+    st.info("아직 번역된 내용이 없습니다.")
