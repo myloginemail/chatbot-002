@@ -4,6 +4,7 @@ from deep_translator import GoogleTranslator
 import streamlit as st
 import os
 import openai
+import datetime
 from openai import OpenAI
 
 openai_api_key = st.secrets['openai']['API_KEY']
@@ -11,6 +12,8 @@ client = OpenAI(api_key  = openai_api_key)
 
 message_history_user = []
 message_history_gpt  = []
+
+now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # 앱 제목
 st.title('✍️ 맞춤형 번역 스타일링')
@@ -138,7 +141,7 @@ if st.button('번역하기'):
             st.download_button(
                 label="📥 결과를 TXT로 저장",
                 data=result_text,
-                file_name="translation_result.txt",
+                file_name = f"translation_result_{now}.txt",
                 mime="text/plain"
             )
         except Exception as e:
