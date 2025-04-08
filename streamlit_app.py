@@ -139,7 +139,7 @@ with col2:
 
     if st.session_state.history:
         # for item in reversed(st.session_state.history):
-        for item in sorted(st.session_state.history, key=lambda x: x['timestamp'], reverse=True):
+        for item in sorted(st.session_state.history, key=lambda x: x['timestamp'], reverse=True)[:5]:
             st.markdown(
             f"**🕒 {item['timestamp']}**\n\n"
             f"- 원문: {item['original']}\n\n"
