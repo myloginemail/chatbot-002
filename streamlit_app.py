@@ -165,6 +165,17 @@ with col2:
             "---"
             )
 
+        # TXT 저장용 문자열 생성
+        txt_content = ""
+        for item in recent_items:
+            txt_content += (
+                f"[{item['timestamp']}]\n"
+                f"원문: {item['original']}\n"
+                f"번역({item['target_lang']}): {item['translated']}\n"
+                f"윤문({item['tone']}): {item['polished']}\n"
+                f"{'-'*40}\n"
+            )
+
         # 파일명에 timestamp 추가
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         file_name = f"history_{timestamp}.txt"
