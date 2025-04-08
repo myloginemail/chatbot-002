@@ -138,7 +138,8 @@ with col2:
     st.title('🕘 히스토리')
 
     if st.session_state.history:
-        for item in reversed(st.session_state.history):
+        # for item in reversed(st.session_state.history):
+        for item in sorted(st.session_state.history, key=lambda x: x['timestamp'], reverse=True):
             st.markdown(
             f"**🕒 {item['timestamp']}**\n\n"
             f"- 원문: {item['original']}\n\n"
