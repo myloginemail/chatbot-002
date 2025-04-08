@@ -2,6 +2,7 @@ from deep_translator import GoogleTranslator
 import streamlit as st
 import openai
 import datetime
+from zoneinfo import ZoneInfo
 from openai import OpenAI
 
 st.set_page_config(
@@ -18,7 +19,8 @@ if 'history' not in st.session_state:
     st.session_state.history = []
 
 # 언어 및 스타일 설정
-timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+kst_now = datetime.datetime.now(ZoneInfo("Asia/Seoul"))
+timestamp = kst_now.strftime("%Y%m%d_%H%M%S")
 
 language_labels = {
     '영어 (English)': 'en',
