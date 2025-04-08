@@ -126,10 +126,20 @@ if st.button('번역하기'):
             max_tokens=500
             )
             message_history_gpt.append({"role":"assistant", "content":response.choices[0].message.content})
-            st.success(
-                f"**원문장:**\n{tran_source_text}\n\n"
-                f"**번역문장 ({selected_label2}):**\n{translated_text}\n\n"
-                f"**윤문문장 ({selected_label3}):**\n{response.choices[0].message.content}"
+            
+            result_text = (
+                f"원문장:\n{tran_source_text}\n\n"
+                f"번역문장 ({selected_label2}):\n{translated_text}\n\n"
+                f"윤문문장 ({selected_label3}):\n{response.choices[0].message.content}"
+            )
+
+            st.success(result_text)
+
+            st.download_button(
+                label="📥 결과를 TXT로 저장",
+                data=result_text,
+                file_name="translation_result.txt",
+                mime="text/plain"
             )
         except Exception as e:
             st.error(f'Error: {e}')
