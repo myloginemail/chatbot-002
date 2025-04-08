@@ -135,8 +135,6 @@ with col1:
 with col2:
     st.title('🕘 히스토리')
 
-    tran_source_text = st.text_area('번역한 문장을 확인하세요')
-
     if st.session_state.history:
         for item in reversed(st.session_state.history):
             st.markdown(f"""
