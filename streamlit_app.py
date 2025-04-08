@@ -164,5 +164,17 @@ with col2:
             f"- 윤문({item['tone']}): {item['polished']}\n\n"
             "---"
             )
+
+        # 파일명에 timestamp 추가
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_name = f"history_{timestamp}.txt"
+
+        # 다운로드 버튼
+        st.download_button(
+            label="📄 히스토리 TXT 다운로드",
+            data=txt_content,
+            file_name=file_name,
+            mime="text/plain"
+        )
     else:
         st.info("아직 번역된 내용이 없습니다.")
