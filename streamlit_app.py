@@ -152,7 +152,7 @@ with col1:
             st.error('번역할 문장을 입력해 주세요.')
 
 with col2:
-    st.title('🕘 히스토리(최근 5개까지)')
+    st.title('🕘 History(최근 5개)')
 
     if st.session_state.history:
         # for item in reversed(st.session_state.history):
