@@ -55,6 +55,13 @@ example_sentences = {
 label_list = list(language_labels.keys())
 default_index = label_list.index('한국어 (Korean)')
 
+# 언어 감지 함수
+def detect_language(text):
+    try:
+        return detect(text)
+    except:
+        return None
+
 # 화면 2분할
 col1, col2 = st.columns([6, 4])
 
@@ -63,7 +70,20 @@ with col1:
 
     tran_source_text = st.text_area('번역을 하고 싶은 문장을 입력해 주세요.')
 
-    selected_label1 = st.selectbox('원본 언어를 선택해 주세요.', list(language_labels.keys()), index=default_index, key="source_lang")
+    # 언어 코드 감지 → label_list에서 해당 언어의 인덱스를 찾음
+    detected_lang_code = detect_language(tran_source_text)
+    detected_index = 1  # 기본은 '한국어'로 (index=1)
+
+    if detected_lang_code in language_labels.values():
+        detected_label = next(label for label, code in language_labels.items() if code == detected_lang_code)
+        detected_index = label_list.index(detected_label)
+
+    selected_label1 = st.selectbox(
+        '원본 언어를 선택해 주세요.', 
+        list(language_labels.keys()), 
+        index=detected_index, 
+        key="source_lang"
+    )
     filtered_labels = [label for label in label_list if label != selected_label1]
     selected_label2 = st.selectbox(
         '번역할 언어를 선택해 주세요.', 
