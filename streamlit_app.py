@@ -26,7 +26,7 @@ language_labels = {
     '영어 (English)': 'en',
     '한국어 (Korean)': 'ko',
     '일본어 (Japanese)': 'ja',
-    '중국어 (chinese)': 'zh'
+    '중국어 (chinese)': 'zh-CN'
 }
 
 language_type = {
