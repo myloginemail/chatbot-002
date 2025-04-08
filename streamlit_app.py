@@ -54,7 +54,7 @@ label_list = list(language_labels.keys())
 default_index = label_list.index('한국어 (Korean)')
 
 # 화면 2분할
-col1, col2 = st.columns([7, 3])
+col1, col2 = st.columns([6, 4])
 
 with col1:
     st.title('✍️ 맞춤형 번역 스타일링')
