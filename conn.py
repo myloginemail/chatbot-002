@@ -36,4 +36,7 @@ def insertDB(tran_source_text, selected_label1, selected_label2, selected_label3
         translated_text,
         gptMessage
     ))
-conn.commit()
+    conn.commit()
+    conn.close()
+
+conn.close()
