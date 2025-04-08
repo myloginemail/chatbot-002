@@ -65,7 +65,12 @@ with col1:
 
     selected_label1 = st.selectbox('원본 언어를 선택해 주세요.', list(language_labels.keys()), index=default_index, key="source_lang")
     filtered_labels = [label for label in label_list if label != selected_label1]
-    selected_label2 = st.selectbox('번역할 언어를 선택해 주세요.', filtered_labels, key="target_lang")
+    selected_label2 = st.selectbox(
+        '번역할 언어를 선택해 주세요.', 
+        filtered_labels, 
+        key="target_lang",
+        help="선택한 원본 언어는 선택할 수 없습니다."
+    )
 
     selected_label3 = st.selectbox(
         '윤문할 스타일을 선택해 주세요.',
