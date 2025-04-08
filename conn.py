@@ -3,8 +3,8 @@ import datetime
 import streamlit as st
 
 # DB 연결
-db_conn = st.secrets['db']['DB_NAME']
-conn = sqlite3.connect(db_conn)
+db_conn = st.secrets["sqlite"]["DB_PATH"]
+conn = sqlite3.connect(db_conn, check_same_thread=False)
 c = conn.cursor()
 
 # 테이블 생성
