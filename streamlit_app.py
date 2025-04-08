@@ -160,17 +160,6 @@ if st.button('번역하기'):
                 "tone": selected_label3
             })
 
-            st.markdown("## 🕘 히스토리")
-
-            if st.session_state.history:
-                for item in reversed(st.session_state.history):
-                    st.markdown(f"""
-                    **🕒 {item['timestamp']}**
-                    - 원문: {item['original']}
-                    - 번역({item['target_lang']}): {item['translated']}
-                    - 윤문({item['tone']}): {item['polished']}
-                    ---
-                    """)
             else:
                 st.info("아직 번역된 내용이 없습니다.")
         except Exception as e:
@@ -178,3 +167,15 @@ if st.button('번역하기'):
         pass
     else:
         st.error('Error')
+
+st.markdown("## 🕘 히스토리")
+
+if st.session_state.history:
+    for item in reversed(st.session_state.history):
+        st.markdown(f"""
+        **🕒 {item['timestamp']}**
+        - 원문: {item['original']}
+        - 번역({item['target_lang']}): {item['translated']}
+        - 윤문({item['tone']}): {item['polished']}
+        ---
+        """)
