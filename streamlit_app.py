@@ -63,7 +63,7 @@ def detect_language(text):
         return None
 
 # 화면 2분할
-col1, col2 = st.columns([6, 4])
+col1, col2 = st.columns([1, 1])
 
 with col1:
     st.title('✍️ 맞춤형 번역 스타일링')
