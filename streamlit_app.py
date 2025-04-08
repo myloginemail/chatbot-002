@@ -17,6 +17,8 @@ message_history_gpt  = []
 # 앱 제목
 st.title('✍️ 맞춤형 번역 스타일링')
 
+now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+
 # URL 입력 받기
 tran_source_text = st.text_area('번역을 하고 싶은 문장을 입력해 주세요.')
 
@@ -140,8 +142,6 @@ if st.button('번역하기'):
             st.success(result_text)
             
             db.insertDB(tran_source_text, selected_label1, selected_label2, selected_label3, translated_text, gptMessage)
-
-            now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             
             st.download_button(
                 label="📥 결과를 TXT로 저장",
