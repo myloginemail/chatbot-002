@@ -164,28 +164,5 @@ with col2:
             f"- 윤문({item['tone']}): {item['polished']}\n\n"
             "---"
             )
-
-        # TXT 저장용 문자열 생성
-        txt_content = ""
-        for item in recent_items:
-            txt_content += (
-                f"[{item['timestamp']}]\n"
-                f"원문: {item['original']}\n"
-                f"번역({item['target_lang']}): {item['translated']}\n"
-                f"윤문({item['tone']}): {item['polished']}\n"
-                f"{'-'*40}\n"
-            )
-
-        # 파일명에 timestamp 추가
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_name = f"history_{timestamp}.txt"
-
-        # 다운로드 버튼
-        st.download_button(
-            label="📄 히스토리 TXT 다운로드",
-            data=txt_content,
-            file_name=file_name,
-            mime="text/plain"
-        )
     else:
         st.info("아직 번역된 내용이 없습니다.")
