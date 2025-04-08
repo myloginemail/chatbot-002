@@ -4,6 +4,11 @@ import openai
 import datetime
 from openai import OpenAI
 
+st.set_page_config(
+    page_title="맞춤형 번역 스타일링",
+    layout="wide"  # <- 페이지 너비를 넓게 설정!
+)
+
 # OpenAI API 설정
 openai_api_key = st.secrets['openai']['API_KEY']
 client = OpenAI(api_key=openai_api_key)
