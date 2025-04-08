@@ -141,7 +141,7 @@ if st.button('번역하기'):
 
             st.success(result_text)
             
-            db.insertDB(tran_source_text, selected_label1, selected_label2, selected_label3, translated_text, gptMessage)
+            db.insertDB(now, tran_source_text, selected_label1, selected_label2, selected_label3, translated_text, gptMessage)
             
             st.download_button(
                 label="📥 결과를 TXT로 저장",
