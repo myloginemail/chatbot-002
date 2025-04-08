@@ -14,8 +14,6 @@ client = OpenAI(api_key  = openai_api_key)
 message_history_user = []
 message_history_gpt  = []
 
-now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-
 # 앱 제목
 st.title('✍️ 맞춤형 번역 스타일링')
 
@@ -142,6 +140,8 @@ if st.button('번역하기'):
             st.success(result_text)
             
             db.insertDB(tran_source_text, selected_label1, selected_label2, selected_label3, translated_text, gptMessage)
+
+            now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             
             st.download_button(
                 label="📥 결과를 TXT로 저장",
