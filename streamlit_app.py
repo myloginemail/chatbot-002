@@ -3,6 +3,7 @@ import streamlit as st
 import openai
 import datetime
 from zoneinfo import ZoneInfo
+from langdetect import detect
 from openai import OpenAI
 
 st.set_page_config(
