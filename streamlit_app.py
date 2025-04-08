@@ -139,12 +139,12 @@ with col2:
 
     if st.session_state.history:
         for item in reversed(st.session_state.history):
-            st.markdown(f"""
-            **🕒 {item['timestamp']}**
-            - 원문: {item['original']}
-            - 번역({item['target_lang']}): {item['translated']}
-            - 윤문({item['tone']}): {item['polished']}
-            ---
-            """)
+            st.markdown(
+            f"**🕒 {item['timestamp']}**\n\n"
+            f"- 원문: {item['original']}\n\n"
+            f"- 번역({item['target_lang']}): {item['translated']}\n\n"
+            f"- 윤문({item['tone']}): {item['polished']}\n\n"
+            "---"
+            )
     else:
         st.info("아직 번역된 내용이 없습니다.")
